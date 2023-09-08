@@ -12,14 +12,19 @@
 class User {
 public:
 
+explicit User(int n);
 
+    int getName() const;
 
+    void setName(int name);
 
+    const std::string &getMessage() const;
 
+    void setMessage(const std::string &message);
 
 private:
     int name;
-
+    std::string message;
 };
 
 
