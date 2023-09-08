@@ -20,6 +20,4 @@ void Chat::setConversazione(const multimap<int, string> &conversazione) {
     Chat::conversazione = conversazione;
 }
 
-Chat::Chat() {
-
-}
+Chat::Chat() = default;
