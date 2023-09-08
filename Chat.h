@@ -17,6 +17,7 @@ class Chat {
 public:
 
     Chat();
+    explicit Chat(int n);
 
     const list<User> &getUsers() const;
 
@@ -26,10 +27,14 @@ public:
 
     void setConversazione(const multimap<int, string> &conversazione);
 
+    int getNum() const;
+
+    void setNum(int num);
+
 private:
     list<User> users;
     multimap<int, string> conversazione;
-
+    int num{};
 };
 
 

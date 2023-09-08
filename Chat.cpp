@@ -4,6 +4,11 @@
 
 #include "Chat.h"
 
+Chat::Chat(int n) : num(n){}
+
+Chat::Chat() = default;
+
+
 const list<User> &Chat::getUsers() const {
     return users;
 }
@@ -20,4 +25,11 @@ void Chat::setConversazione(const multimap<int, string> &conversazione) {
     Chat::conversazione = conversazione;
 }
 
-Chat::Chat() = default;
+int Chat::getNum() const {
+    return num;
+}
+
+void Chat::setNum(int num) {
+    Chat::num = num;
+}
+
