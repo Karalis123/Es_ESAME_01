@@ -22,6 +22,7 @@ public:
     void insertLast(User* u);
 
 
+
     const list<User *> &getUsers() const;
 
     void setUsers(const list<User *> &users);
