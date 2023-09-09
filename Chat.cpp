@@ -8,14 +8,16 @@ Chat::Chat(int n) : num(n){}
 
 Chat::Chat() = default;
 
-
-const list<User> &Chat::getUsers() const {
-    return users;
+void Chat::insertLast(User* u) {
+    users.push_back(u);
 }
 
-void Chat::setUsers(const list<User> &users) {
-    Chat::users = users;
-}
+
+
+
+
+
+
 
 const multimap<int, string> &Chat::getConversazione() const {
     return conversazione;
@@ -31,5 +33,13 @@ int Chat::getNum() const {
 
 void Chat::setNum(int num) {
     Chat::num = num;
+}
+
+const list<User *> &Chat::getUsers() const {
+    return users;
+}
+
+void Chat::setUsers(const list<User *> &users) {
+    Chat::users = users;
 }
 

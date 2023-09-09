@@ -19,9 +19,12 @@ public:
     Chat();
     explicit Chat(int n);
 
-    const list<User> &getUsers() const;
+    void insertLast(User* u);
 
-    void setUsers(const list<User> &users);
+
+    const list<User *> &getUsers() const;
+
+    void setUsers(const list<User *> &users);
 
     const multimap<int, string> &getConversazione() const;
 
@@ -32,7 +35,7 @@ public:
     void setNum(int num);
 
 private:
-    list<User> users;
+    list<User*> users;
     multimap<int, string> conversazione;
     int num{};
 };

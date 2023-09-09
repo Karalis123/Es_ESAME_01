@@ -26,6 +26,8 @@ int numUsers = 1;
             numUsers++;
             User* user2 = new User(numUsers);
             numUsers++;
+            chat->insertLast(user1);
+            chat->insertLast(user2);
 
 
         }

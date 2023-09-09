@@ -12,7 +12,7 @@
 class User {
 public:
 
-explicit User(int n);
+    User(int n);
 
     int getName() const;
 
