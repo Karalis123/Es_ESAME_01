@@ -35,9 +35,11 @@ int numUsers = 1;
                 User* user = new User(numUsers);
                 numUsers++;
                 chat->insertLast(user);
+                chat->incrementMaxDimension();
                 cout<<"Vuoi creare altri utenti? Scrivi 1 per crearne uno o 0 per andare avanti"<<endl;
                 cin>>uscita2;
             }
+            chat->chatProper();
         }
 
     }while(uscita1!=0);

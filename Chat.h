@@ -20,25 +20,28 @@ public:
     explicit Chat(int n);
 
     void insertLast(User* u);
-
-
+    void chatProper();
+    void showUsers();
+    void incrementMaxDimension();
 
     const list<User *> &getUsers() const;
-
     void setUsers(const list<User *> &users);
 
     const multimap<int, string> &getConversazione() const;
-
     void setConversazione(const multimap<int, string> &conversazione);
 
     int getNum() const;
-
     void setNum(int num);
+
+    int getMaxdimension() const;
+
+    void setMaxdimension(int maxdimension);
 
 private:
     list<User*> users;
     multimap<int, string> conversazione;
     int num{};
+    int maxdimension = 2;
 };
 
 
