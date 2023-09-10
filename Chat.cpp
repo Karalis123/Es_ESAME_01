@@ -14,28 +14,25 @@ void Chat::insertLast(User* u) {
 
 void Chat::chatProper() {
     int cont1 = 0;
-    int mitt =0;
-    int dest = 0;
-    int cont2 = 0;
     int user1 = 0;
     int user2 = 0;
-    int num=0;
+    int numero=0;
 
     showUsers();
     cout<<endl<<"Chi sono i due utenti che si parlano attraverso la chat?"<<endl;
     for (int i=0; i<2; i++){
         cout<<"Scrivi il numero dell'utente "<<endl;
-        cin>>num;
-        if(maxdimension<num || num==user1){
+        cin>>numero;
+        if(maxdimension<numero || numero==user1){
             cout<<"Inserisci il numero di un utente esistente o non selezionato"<<endl;
             i--;
         }
         else{
             if(i==0){
-                user1 = num;
+                user1 = numero;
             }
             else{
-                user2 = num;
+                user2 = numero;
             }
         }
     }
@@ -60,9 +57,13 @@ void Chat::chatProper() {
                     else{
                         if(cont1==user1){
                             sendingProcess(user1, user2);
+                            x--;
+                            cout << "cont1==user1" << endl;
                         }
                         else if(cont1==user2){
                             sendingProcess(user2, user1);
+                            x--;
+                            cout << "cont1==user2" << endl;
                         }
                     }
                 }
@@ -74,7 +75,7 @@ void Chat::chatProper() {
 
 }
 
-void Chat::sendingProcess(int mit, int dest) {
+void Chat::sendingProcess(int mitt, int dest) {
 
 }
 
@@ -102,32 +103,40 @@ const multimap<int, string> &Chat::getConversazione() const {
     return conversazione;
 }
 
-void Chat::setConversazione(const multimap<int, string> &conversazione) {
-    Chat::conversazione = conversazione;
+void Chat::setConversazione(const multimap<int, string> &convers) {
+    Chat::conversazione = convers;
 }
 
 int Chat::getNum() const {
     return num;
 }
 
-void Chat::setNum(int num) {
-    Chat::num = num;
+void Chat::setNum(int number) {
+    Chat::num = number;
 }
 
 const list<User *> &Chat::getUsers() const {
     return users;
 }
 
-void Chat::setUsers(const list<User *> &users) {
-    Chat::users = users;
+void Chat::setUsers(const list<User *> &users1) {
+    Chat::users = users1;
 }
 
 int Chat::getMaxdimension() const {
     return maxdimension;
 }
 
-void Chat::setMaxdimension(int maxdimension) {
-    Chat::maxdimension = maxdimension;
+void Chat::setMaxdimension(int maxdim) {
+    Chat::maxdimension = maxdim;
+}
+
+const string &Chat::getStoredMessage() const {
+    return storedMessage;
+}
+
+void Chat::setStoredMessage(const string &storedMessaggio) {
+    Chat::storedMessage = storedMessaggio;
 }
 
 

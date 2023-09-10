@@ -24,26 +24,31 @@ public:
     void showUsers();
     void showUsersInChat(int u1, int u2);
     void incrementMaxDimension();
-    void sendingProcess(int mit, int dest);
+    void sendingProcess(int mitt, int dest);
 
     const list<User *> &getUsers() const;
-    void setUsers(const list<User *> &users);
+    void setUsers(const list<User *> &users1);
 
     const multimap<int, string> &getConversazione() const;
-    void setConversazione(const multimap<int, string> &conversazione);
+    void setConversazione(const multimap<int, string> &convers);
 
     int getNum() const;
-    void setNum(int num);
+    void setNum(int number);
 
     int getMaxdimension() const;
 
-    void setMaxdimension(int maxdimension);
+    void setMaxdimension(int maxdim);
+
+    const string &getStoredMessage() const;
+
+    void setStoredMessage(const string &storedMessaggio);
 
 private:
     list<User*> users;
     multimap<int, string> conversazione;
     int num{};
     int maxdimension = 2;
+    string storedMessage = "";
 };
 
 
