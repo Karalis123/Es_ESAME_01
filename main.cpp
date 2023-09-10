@@ -14,10 +14,11 @@ int main() {
 int uscita1 = 0;
 int uscita2 = 0;
 int numChat = 1;
-int numUsers = 1;
+
 
 
     do{
+        int numUsers = 1;
         cout<<"Iniziare una chat? Scrivi 1 per iniziarne una o 0 per chiudere il programma"<<endl;
         cin>>uscita1;
         if(uscita1==1){

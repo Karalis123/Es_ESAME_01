@@ -22,7 +22,9 @@ public:
     void insertLast(User* u);
     void chatProper();
     void showUsers();
+    void showUsersInChat(int u1, int u2);
     void incrementMaxDimension();
+    void sendingProcess(int mit, int dest);
 
     const list<User *> &getUsers() const;
     void setUsers(const list<User *> &users);

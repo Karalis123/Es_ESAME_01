@@ -14,6 +14,8 @@ public:
 
     User(int n);
 
+    void write();
+
     int getName() const;
 
     void setName(int name);
