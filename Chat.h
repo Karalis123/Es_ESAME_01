@@ -21,10 +21,14 @@ public:
 
     void insertLast(User* u);
     void chatProper();
+    void sendingProcess(int mitt, int dest, int cont);
+    void incrementMaxDimension();
     void showUsers();
     void showUsersInChat(int u1, int u2);
-    void incrementMaxDimension();
-    void sendingProcess(int mitt, int dest);
+    void showChat();
+
+
+
 
     const list<User *> &getUsers() const;
     void setUsers(const list<User *> &users1);
@@ -48,7 +52,7 @@ private:
     multimap<int, string> conversazione;
     int num{};
     int maxdimension = 2;
-    string storedMessage = "";
+    string storedMessage;
 };
 
 

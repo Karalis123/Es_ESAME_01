@@ -3,6 +3,7 @@
 //
 
 #include "Chat.h"
+#include <iostream>
 
 Chat::Chat(int n) : num(n){}
 
@@ -16,7 +17,8 @@ void Chat::chatProper() {
     int cont1 = 0;
     int user1 = 0;
     int user2 = 0;
-    int numero=0;
+    int numero = 0;
+    int cont2;
 
     showUsers();
     cout<<endl<<"Chi sono i due utenti che si parlano attraverso la chat?"<<endl;
@@ -40,6 +42,7 @@ void Chat::chatProper() {
     showUsersInChat(user1, user2);
 
     do{
+        cont2 = 1;
         for(int x=0; x<1; x++) {
             cout << "Inserisci il numero di quale utente vuoi sia il mittente del messaggio oppure scrivi 0 per chiudere la chat"
                  << endl;
@@ -56,14 +59,18 @@ void Chat::chatProper() {
                     }
                     else{
                         if(cont1==user1){
-                            sendingProcess(user1, user2);
+                            sendingProcess(user1, user2, cont2);
                             x--;
                             cout << "cont1==user1" << endl;
+                            showChat();
+                            cont2++;
                         }
                         else if(cont1==user2){
-                            sendingProcess(user2, user1);
+                            sendingProcess(user2, user1, cont2);
                             x--;
                             cout << "cont1==user2" << endl;
+                            showChat();
+                            cont2++;
                         }
                     }
                 }
@@ -75,8 +82,31 @@ void Chat::chatProper() {
 
 }
 
-void Chat::sendingProcess(int mitt, int dest) {
+void Chat::sendingProcess(int mitt, int dest, int cont) {
+    string s1, s2, s3, s4;
+    string s;
+    for (auto it = begin(users); it != users.end(); it++) {
+        if (mitt == (*it)->getName()) {
+            (*it)->write();
+            storedMessage = (*it)->getMessage();
+            cout<<"--------------"<<endl;
+        }
+    }
+    cout<<"--------------"<<endl;
+    s1 = "Utente "; s2= to_string(mitt); s3= ": << "; s4= " >>";
+    s = s1+s2+s3+storedMessage+s4;
+    conversazione.insert(pair<int, string>(cont, s));
+    cout<<"--------------"<<endl;
+    for (auto itr = begin(users); itr != users.end(); itr++) {
+        if (dest == (*itr)->getName()) {
+            (*itr)->setMessage(storedMessage);
+            cout<<"(*it)->getMessage() "<<(*itr)->getMessage()<< endl;
+        }
+    }
+}
 
+void Chat::incrementMaxDimension() {
+    maxdimension++;
 }
 
 void Chat::showUsers() {
@@ -85,6 +115,7 @@ void Chat::showUsers() {
         cout << "Utente numero "<< (*it)->getName()<<std::endl;
     }
 }
+
 
 void Chat::showUsersInChat(int u1, int u2) {
     cout<<endl<<"Utenti nella chat"<<endl;
@@ -95,9 +126,16 @@ void Chat::showUsersInChat(int u1, int u2) {
     }
 }
 
-void Chat::incrementMaxDimension() {
-    maxdimension++;
+void Chat::showChat() {
+    multimap<int, string>::iterator itr;
+
+    for (itr = conversazione.begin(); itr != conversazione.end(); ++itr) {
+        cout<< (*itr).second <<endl;
+    }
+    cout << endl;
 }
+
+
 
 const multimap<int, string> &Chat::getConversazione() const {
     return conversazione;
@@ -138,6 +176,8 @@ const string &Chat::getStoredMessage() const {
 void Chat::setStoredMessage(const string &storedMessaggio) {
     Chat::storedMessage = storedMessaggio;
 }
+
+
 
 
 

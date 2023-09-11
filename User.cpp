@@ -4,14 +4,18 @@
 
 #include "User.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 User::User(int n) : name(n){}
 
 void User::write() {
+    cin.clear();
+    cin.sync();
+
     string s;
     cout<< "Scrivi il messaggio" << endl;
-    cin>>s;
+    getline(cin, s);
     message=s;
 }
 
