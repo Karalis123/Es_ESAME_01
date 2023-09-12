@@ -20,9 +20,14 @@ public:
     explicit Chat(int n);
 
     void insertLast(User* u);
-    void chatProper();
+    int chatProper();
     void sendingProcess(int mitt, int dest, int cont);
     void incrementMaxDimension();
+
+    void create();
+    void registerOnScreen();
+    void save();
+
     void showUsers();
     void showUsersInChat(int u1, int u2);
     void showChat();

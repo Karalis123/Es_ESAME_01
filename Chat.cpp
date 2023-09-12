@@ -4,6 +4,10 @@
 
 #include "Chat.h"
 #include <iostream>
+#include<fstream>
+#include <filesystem>
+
+using std::filesystem::exists;
 
 Chat::Chat(int n) : num(n){}
 
@@ -13,12 +17,15 @@ void Chat::insertLast(User* u) {
     users.push_back(u);
 }
 
-void Chat::chatProper() {
+
+
+int Chat::chatProper() {
     int cont1 = 0;
     int user1 = 0;
     int user2 = 0;
     int numero = 0;
     int cont2;
+    int permit = 0;
 
     showUsers();
     cout<<endl<<"Chi sono i due utenti che si parlano attraverso la chat?"<<endl;
@@ -48,6 +55,7 @@ void Chat::chatProper() {
                  << endl;
             cin >> cont1;
             if (cont1 != 0) {
+                permit = 1;
                 if (cont1>maxdimension) {
                     cout << "Inserisci il numero di un utente esistente" << endl;
                     x--;
@@ -61,14 +69,12 @@ void Chat::chatProper() {
                         if(cont1==user1){
                             sendingProcess(user1, user2, cont2);
                             x--;
-                            cout << "cont1==user1" << endl;
                             showChat();
                             cont2++;
                         }
                         else if(cont1==user2){
                             sendingProcess(user2, user1, cont2);
                             x--;
-                            cout << "cont1==user2" << endl;
                             showChat();
                             cont2++;
                         }
@@ -79,7 +85,7 @@ void Chat::chatProper() {
 
 
     }while(cont1!=0);
-
+    return permit;
 }
 
 void Chat::sendingProcess(int mitt, int dest, int cont) {
@@ -89,18 +95,15 @@ void Chat::sendingProcess(int mitt, int dest, int cont) {
         if (mitt == (*it)->getName()) {
             (*it)->write();
             storedMessage = (*it)->getMessage();
-            cout<<"--------------"<<endl;
         }
     }
-    cout<<"--------------"<<endl;
     s1 = "Utente "; s2= to_string(mitt); s3= ": << "; s4= " >>";
     s = s1+s2+s3+storedMessage+s4;
     conversazione.insert(pair<int, string>(cont, s));
-    cout<<"--------------"<<endl;
     for (auto itr = begin(users); itr != users.end(); itr++) {
         if (dest == (*itr)->getName()) {
             (*itr)->setMessage(storedMessage);
-            cout<<"(*it)->getMessage() "<<(*itr)->getMessage()<< endl;
+            /*cout<<"(*it)->getMessage() "<<(*itr)->getMessage()<< endl;*/
         }
     }
 }
@@ -109,13 +112,51 @@ void Chat::incrementMaxDimension() {
     maxdimension++;
 }
 
+
+
+void Chat::create() {
+    string file = "registro.txt";
+    if(exists(file)){
+        registerOnScreen();
+    }
+    else{
+        ofstream fout(file);
+    }
+}
+
+void Chat::registerOnScreen() {
+    ifstream fin("registro.txt");
+
+    char var;
+    while(fin.get(var))
+    {
+        cout<<var;
+    }
+    fin.close();
+}
+
+void Chat::save() {
+    ofstream fout("registro.txt", ios::app);
+
+    multimap<int, string>::iterator itr;
+    fout<<"Chat numero "<< num <<endl;
+    for (itr = conversazione.begin(); itr != conversazione.end(); ++itr) {
+        fout<< (*itr).second <<endl;
+    }
+    fout << endl;
+    fout.close();
+}
+
+
+
+
+
 void Chat::showUsers() {
     cout<<endl<<"Elenco di utenti"<<endl;
     for (auto it = begin(users); it != users.end(); it++) {
         cout << "Utente numero "<< (*it)->getName()<<std::endl;
     }
 }
-
 
 void Chat::showUsersInChat(int u1, int u2) {
     cout<<endl<<"Utenti nella chat"<<endl;
@@ -176,6 +217,14 @@ const string &Chat::getStoredMessage() const {
 void Chat::setStoredMessage(const string &storedMessaggio) {
     Chat::storedMessage = storedMessaggio;
 }
+
+
+
+
+
+
+
+
 
 
 
