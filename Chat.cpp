@@ -103,7 +103,6 @@ void Chat::sendingProcess(int mitt, int dest, int cont) {
     for (auto itr = begin(users); itr != users.end(); itr++) {
         if (dest == (*itr)->getName()) {
             (*itr)->setMessage(storedMessage);
-            /*cout<<"(*it)->getMessage() "<<(*itr)->getMessage()<< endl;*/
         }
     }
 }
@@ -128,6 +127,7 @@ void Chat::registerOnScreen() {
     ifstream fin("registro.txt");
 
     char var;
+    cout<<endl;
     while(fin.get(var))
     {
         cout<<var;
@@ -169,7 +169,7 @@ void Chat::showUsersInChat(int u1, int u2) {
 
 void Chat::showChat() {
     multimap<int, string>::iterator itr;
-
+    cout<<endl;
     for (itr = conversazione.begin(); itr != conversazione.end(); ++itr) {
         cout<< (*itr).second <<endl;
     }
