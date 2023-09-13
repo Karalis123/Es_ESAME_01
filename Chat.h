@@ -19,6 +19,8 @@ public:
     Chat();
     explicit Chat(int n);
 
+    virtual ~Chat();
+
     void insertLast(User* u);
     int chatProper();
     void sendingProcess(int mitt, int dest, int cont);

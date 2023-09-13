@@ -218,6 +218,10 @@ void Chat::setStoredMessage(const string &storedMessaggio) {
     Chat::storedMessage = storedMessaggio;
 }
 
+Chat::~Chat() {
+
+}
+
 
 
 
